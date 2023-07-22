@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    background: url(../bgImg.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-clip: content-box;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.contact_us {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    height: 100vh;
+}
+
+.contact_us .right_details {
+    background: rgba(141, 67, 216, 0.336);
+    height: max-content;
+
+    width: 100vw;
+    height: 60vh;
+
+    font-size: 1.4rem;
+    color: aliceblue;
+    position: relative;
+}
+.contact_us .right_details .title{
+    background: rgba(31, 33, 133, 0.384);
+    border-radius: 0.5rem;
+
+    
+    position: absolute;
+    top: 9vw;
+    right: 4vw;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+
+.contact_body {
+    position: absolute;
+    left: 10vw;
+
+    background: rgb(245, 245, 244);
+    box-shadow: 2px 2px 6px #000;
+
+    height: 80vh;
+    width: 40vw;
+    border-radius: 0.4rem;
+
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 2rem;
+
+
+
+}
+.contact_body .contact_title{
+    top: 0;
+    left: 5rem;
+    position: absolute;
+}
+.contact_body  .db_cards{
+    z-index: 10;
+    position: absolute;
+    top: 10%;
+
+    width: 80%;
+    height: 60vh;
+
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+
+    overflow-y: scroll;
+
+}
+.contact_body  .db_cards .card{
+    margin: 1rem;
+    height: 15rem;
+    width: 20rem;
+    color: #000;
+    background: rgb(255, 255, 255);
+}
+
+
+@media screen and (max-width:1020px) {
+    
+}
+
+@media screen and (max-width:920px) {
+   
+}
+
+@media screen and (max-width:820px) {
+    .contact_us {
+        flex-direction: column;
+    }
+
+    .contact_us .right_details {
+        position: absolute;
+        top: 100vh;
+        background: rgb(141, 67, 216);
+        height: 50vh;
+
+    }
+
+
+   
+
+    .contact_body {
+
+        width: 80vw;
+    }
+    
+
+}
+
+@media screen and (max-width:540px) {
+  
+}
+
+@media screen and (max-width:440px) {
+    
+}

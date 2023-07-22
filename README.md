@@ -52,7 +52,7 @@ To configure the web page using XAMPP on your local machine, meticulously follow
 To access the Admin Panel and its privileged functionalities, employ the following credentials:
 
 - Username: admin
-- Password: admin@123
+- Password: Admin@123
 
 Kindly acknowledge that due to the rapid development of this project, the Admin Panel's functionalities may not be fully functional or may exhibit incompleteness. Specifically, certain features such as deleting contact form submissions may not be entirely implemented at this stage. This project serves as a rudimentary demonstration of PHP and MySQL integration, intended primarily for learning purposes.
 

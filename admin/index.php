@@ -2,7 +2,7 @@
 
 session_start();
 
-$sessionExpiration = 3; 
+$sessionExpiration = 1000; 
 
 
 if (isset($_SESSION['lastActivity']) && time() - $_SESSION['lastActivity'] > $sessionExpiration) {

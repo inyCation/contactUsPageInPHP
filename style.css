@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
 
+:root{
+    --clr-pri: rgba(141, 67, 216, 0.336);
+    --clr-txt: rgb(245, 245, 244);
+    --clr-black: rgb(10, 10, 10);
+}   
 
 * {
     box-sizing: border-box;
@@ -8,7 +13,7 @@
 }
 
 html {
-    background: url(./bgImg.jpg);
+    background: url(./assets/bgImg.jpg);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -25,13 +30,13 @@ html {
 }
 
 .contact_us .right_details {
-    background: rgba(141, 67, 216, 0.336);
+    background: var(--clr-pri);
     height: max-content;
 
     width: 100vw;
     height: 60vh;
 
-    color: aliceblue;
+    color: var(--clr-txt);
 }
 
 
@@ -56,8 +61,8 @@ html {
     position: absolute;
     right: 10vw;
 
-    background: rgb(245, 245, 244);
-    box-shadow: 2px 2px 6px #000;
+    background: var(--clr-txt);
+    box-shadow: 2px 2px 6px var(--clr-black);
 
     height: 80vh;
     width: 40vw;
@@ -90,7 +95,7 @@ html {
     background: none;
     outline: none;
     border: none;
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid var(--clr-black);
 }
 
 .contact_body form .name input,
@@ -113,14 +118,14 @@ html {
     text-transform: uppercase;
     letter-spacing: 0.2rem;
 
-    border-top: 2px solid #000;
-    border-left: 2px solid #000;
-    border-right: 2px solid #000;
-    border-bottom: 2px solid #000;
+    border-top: 2px solid var(--clr-black);
+    border-left: 2px solid var(--clr-black);
+    border-right: 2px solid var(--clr-black);
+    border-bottom: 2px solid var(--clr-black);
 }
 .contact_body form button:hover {
-    background: #000;
-    color:rgb(245, 245, 244);
+    background: var(--clr-black);
+    color:var(--clr-txt);
 }
 
 @media screen and (max-width:1020px) {
@@ -143,7 +148,7 @@ html {
     .contact_us .right_details {
         position: absolute;
         top: 100vh;
-        background: rgb(141, 67, 216);
+        background: var(--clr-pri);
         height: 50vh;
 
     }

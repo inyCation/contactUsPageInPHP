@@ -1,4 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+:root {
+    --clr-pri: rgba(141, 67, 216, 0.336);
+    --clr-txt: rgb(245, 245, 244);
+    --clr-black: rgb(10, 10, 10);
+}
 
 
 * {
@@ -8,7 +13,7 @@
 }
 
 html {
-    background: url(../bgImg.jpg);
+    background: url(../assets/bgImg.jpg);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -25,18 +30,18 @@ html {
 }
 
 .contact_us .right_details {
-    background: rgba(141, 67, 216, 0.336);
+    background: var(--clr-pri);
     height: max-content;
 
     width: 100vw;
     height: 60vh;
 
     font-size: 1.4rem;
-    color: aliceblue;
+    color: var(--clr-txt);
     position: relative;
 }
 .contact_us .right_details .title{
-    background: rgba(31, 33, 133, 0.384);
+    background: var(--clr-pri);
     border-radius: 0.5rem;
 
     
@@ -52,8 +57,8 @@ html {
     position: absolute;
     left: 10vw;
 
-    background: rgb(245, 245, 244);
-    box-shadow: 2px 2px 6px #000;
+    background: var(--clr-txt);
+    box-shadow: 2px 2px 6px var(--clr-txt);
 
     height: 80vh;
     width: 40vw;
@@ -92,8 +97,8 @@ html {
     margin: 1rem;
     height: 15rem;
     width: 20rem;
-    color: #000;
-    background: rgb(255, 255, 255);
+    color: var(--clr-black);
+    background: var(--clr-txt);
 }
 
 
@@ -113,7 +118,7 @@ html {
     .contact_us .right_details {
         position: absolute;
         top: 100vh;
-        background: rgb(141, 67, 216);
+        background: var(--clr-pri);
         height: 50vh;
 
     }

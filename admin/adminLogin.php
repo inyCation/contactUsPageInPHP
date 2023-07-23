@@ -41,46 +41,57 @@ mysqli_close($conn);
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
-        html{
+
+        :root {
+            --clr-pri: rgba(141, 67, 216, 0.336);
+            --clr-txt: rgb(245, 245, 244);
+            --clr-black: rgb(10, 10, 10);
+        }
+
+        html {
             box-sizing: border-box;
-            margin: 0;  
+            margin: 0;
             padding: 0;
             font-family: 'Roboto Mono', monospace;
 
         }
-        body{
+
+        body {
             display: grid;
             place-items: center;
             margin-top: 30vh;
 
-            background: url(../bgImg.jpg);
+            background: url(../assets/bgImg.jpg);
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
             background-clip: border-box;
 
         }
-        .bg_banner{
+
+        .bg_banner {
             position: absolute;
             top: 22vh;
             width: 100vw;
             height: 40vh;
-            background: rgba(141, 67, 216, 0.336);
+            background: var(--clr-pri);
 
         }
-        form{
+
+        form {
             position: absolute;
             top: 15vh;
 
             height: 60vh;
             width: 30vw;
-            background-color: aliceblue;
+            background-color: var(--clr-txt);
 
             border-radius: 0.4rem;
             display: grid;
@@ -88,15 +99,16 @@ mysqli_close($conn);
 
             letter-spacing: 0.2rem;
         }
-        form input{
+
+        form input {
             background: none;
             outline: none;
-            
+
             border: none;
-        
+
         }
 
-        form button{
+        form button {
             background: none;
             border: none;
             letter-spacing: 0.2rem;
@@ -104,41 +116,42 @@ mysqli_close($conn);
             position: absolute;
             margin-top: -5rem;
             margin-left: -4.7rem;
-            
+
             width: 10rem;
             height: 2.4rem;
 
-            border-top: 2px solid #000;
-            border-bottom: 2px solid #000;
-            border-right: 2px solid #000;
-            border-left: 2px solid #000;
-
-        }
-        form button:hover{
-            background: #000;
-            color: aliceblue;
-        }
-        .username{
-
-        }
-        .username input{
-            border-bottom: 2px solid #000;
+            border-top: 2px solid var(--clr-black);
+            border-bottom: 2px solid var(--clr-black);
+            border-right: 2px solid var(--clr-black);
+            border-left: 2px solid var(--clr-black);
 
         }
 
-        .passwd{
+        form button:hover {
+            background: var(--clr-black);
+            color: var(--clr-txt);
+        }
+
+        .username {}
+
+        .username input {
+            border-bottom: 2px solid var(--clr-black);
+
+        }
+
+        .passwd {
             position: absolute;
             margin-top: -5rem;
-        }   
-        .passwd input{
-            border-bottom: 2px solid #000;
-
         }
 
+        .passwd input {
+            border-bottom: 2px solid var(--clr-black);
 
+        }
     </style>
     <title>Login</title>
 </head>
+
 <body>
     <div class="bg_banner"></div>
     <form action="" method="post">
@@ -156,4 +169,5 @@ mysqli_close($conn);
         </div>
     </form>
 </body>
+
 </html>

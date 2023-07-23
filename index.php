@@ -45,7 +45,7 @@ if (isset($_POST['name'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link rel="stylesheet" href="./style.css">
-    <title>CONTACT US</title>
+    <title>CONTACT US PAGE</title>
 </head>
 
 <body>

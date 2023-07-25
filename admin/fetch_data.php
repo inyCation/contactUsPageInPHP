@@ -1,11 +1,6 @@
 <?php
 
-    $host = 'localhost';
-    $username = 'root';
-    $password = '';
-    $database = 'contactUs';
-
-    $conn = mysqli_connect($host, $username, $password, $database);
+    include("_con.php");
 
     if (!$conn) {
         die('Could not connect to MySQL: ' . mysqli_connect_error());
@@ -20,8 +15,8 @@
         echo '<div class="email"> Email : ' . $row['email'] . '</div>';
         echo '<div class="message"> Message : ' . $row['message'] . '</div>';
         echo '<div class="dt"> Time : ' . $row['dt'] . '</div>';
+        echo "<a class='btn_delete' href='delete.php?dl=" . $row['sl'] . "'> delete </a>";
         echo '</div>';
-        echo '<button class="delete_btn" type="submit">Delete</button>';
     }
     
     mysqli_free_result($result);

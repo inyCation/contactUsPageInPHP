@@ -1,40 +1,57 @@
 <?php
 $data_sent = false;
 $blank_found = false;
+$invalid_input = false;
+$name_lt_30 = false;
+
 if (isset($_POST['name'])) {
 
+    $name = htmlspecialchars(trim($_POST['name']), ENT_QUOTES, 'UTF-8');
+    $email = htmlspecialchars(trim($_POST['email']), ENT_QUOTES, 'UTF-8');
+    $message = htmlspecialchars(trim($_POST['message']), ENT_QUOTES, 'UTF-8');
 
-    $server = "localhost";
-    $username = "root";
-    $password = "";
-    $database = "contactUs";
 
-    $connection = mysqli_connect($server, $username, $password);
-
-    if (!$connection) {
-        die("Connection failed Due to " . mysqli_connect_error());
+    if (empty($name) || empty($email) || empty($message)) {
+        $blank_found = true;
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $invalid_input = true;
+    } elseif (strlen($name) > 30) {
+        $name_lt_30 = true;
     }
-    $select_db = mysqli_select_db($connection, $database);
-    if (!$select_db) {
-        die("Failed to select the database: " . mysqli_error($connection));
-    }
-    $name = trim($_POST['name']);
-    $email = trim($_POST['email']);
-    $message = trim($_POST['message']);
 
-    $name == "" ? $blank_found = true : $blank_found = false;
+    if (!$blank_found && !$invalid_input && !$name_lt_30) {
+        $server = "localhost";
+        $username = "root";
+        $password = "";
+        $database = "contactUs";
 
+        $connection = mysqli_connect($server, $username, $password);
 
-    if ($blank_found == false) {
-        $sql = "INSERT INTO `contactUs`.`contact` ( `name`, `email`, `message`, `dt`) VALUES ( '$name', '$email', '$message', current_timestamp())";
-        if ($connection->query($sql) == true) {
+        if (!$connection) {
+            die("Connection failed Due to " . mysqli_connect_error());
+        }
+        $select_db = mysqli_select_db($connection, $database);
+        if (!$select_db) {
+            die("Failed to select the database: " . mysqli_error($connection));
+        }
+
+        $stmt = $connection->prepare("INSERT INTO `contactUs`.`contact` (`name`, `email`, `message`, `dt`) VALUES (?, ?, ?, current_timestamp())");
+        $stmt->bind_param("sss", $name, $email, $message);
+
+        if ($stmt->execute()) {
             $data_sent = true;
         }
 
+        $stmt->close();
         $connection->close();
+    } else {
+        echo "Invalid input or blank fields. Data not sent to the database.";
+        exit(); 
     }
 }
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -87,28 +104,26 @@ if (isset($_POST['name'])) {
                 Contact Us
             </h1>
             <?php
-            if ($data_sent == true) {
+            if ($data_sent != false) {
                 echo "<p class='sent' > MESSAGE SENT </p>";
             } elseif ($blank_found != false) {
                 echo "<p class='blank' > PLEASE PROVIDE INPUT </p>";
+            } elseif ($name_lt_30 != false) {
+                echo "<p class='blank' > PLEASE PUT NAME LESSTHAN 30 CHARs </p>";
             }
             ?>
             <form action="index.php" method="POST">
                 <div class="name">
-                    <!-- <label for="name">Name:</label> -->
                     <input type="text" name="name" id="name" placeholder="Your Full Name">
                 </div>
                 <div class="email">
-                    <!-- <label for="email">Email:</label> -->
                     <input type="email" name="email" id="email" placeholder="Your Email">
                 </div>
                 <div class="message">
-                    <!-- <label for="message">Message:</label> -->
                     <input type="text" name="message" id="message" placeholder="Your Message">
                 </div>
                 <button type="submit">Submit</button>
                 <a href="./admin/adminLogin.php">ADMIN LOGIN</a>
-
             </form>
         </div>
     </div>

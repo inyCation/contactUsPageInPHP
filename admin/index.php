@@ -2,7 +2,7 @@
 
 session_start();
 
-$sessionExpiration = 1000; 
+$sessionExpiration = 130; 
 
 
 if (isset($_SESSION['lastActivity']) && time() - $_SESSION['lastActivity'] > $sessionExpiration) {
@@ -69,7 +69,7 @@ $_SESSION['lastActivity'] = time();
                 });
         }
         fetchAndRefreshData();
-        setInterval(fetchAndRefreshData, 1000);
+        setInterval(fetchAndRefreshData, 100000);
 </script>
 </html>
 

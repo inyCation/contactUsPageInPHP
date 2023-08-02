@@ -98,10 +98,14 @@ html {
     color: var(--clr-black);
     background: var(--clr-txt);
 }
-.btn_delete{
+#btn_delete{
     text-decoration: none;
+    color: rgb(10, 10, 10);
 }
 
+1waewd3@G
+rootContact
+contactUs
 
 @media screen and (max-width:820px) {
     .contact_us {

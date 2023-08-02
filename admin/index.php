@@ -69,7 +69,7 @@ $_SESSION['lastActivity'] = time();
                 });
         }
         fetchAndRefreshData();
-        setInterval(fetchAndRefreshData, 100000);
+        setInterval(fetchAndRefreshData, 1000);
 </script>
 </html>
 

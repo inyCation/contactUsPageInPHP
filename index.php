@@ -34,15 +34,24 @@ if (isset($_POST['name'])) {
         if (!$select_db) {
             die("Failed to select the database: " . mysqli_error($connection));
         }
-
-        $stmt = $connection->prepare("INSERT INTO `contactUs`.`contact` (`name`, `email`, `message`, `dt`) VALUES (?, ?, ?, current_timestamp())");
-        $stmt->bind_param("sss", $name, $email, $message);
-
-        if ($stmt->execute()) {
+        $query = "INSERT INTO `contactUs`.`contact` (`name`, `email`, `message`, `dt`) VALUES (?, ?, ?, current_timestamp())";
+        $stmt = mysqli_prepare($connection,$query);
+        
+        if ($stmt) {
+            mysqli_stmt_bind_param($stmt, "sss", $name, $email, $message);
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_close($stmt);
             $data_sent = true;
+
+        } else {
+            echo "Error in query preparation: " . mysqli_error($con);
         }
 
-        $stmt->close();
+        // if ($stmt->execute()) {
+        //     $data_sent = true;
+        // }
+
+        // $stmt->close();
         $connection->close();
     } else {
         echo "Invalid input or blank fields. Data not sent to the database.";

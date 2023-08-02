@@ -15,7 +15,7 @@
         echo '<div class="email"> Email : ' . $row['email'] . '</div>';
         echo '<div class="message"> Message : ' . $row['message'] . '</div>';
         echo '<div class="dt"> Time : ' . $row['dt'] . '</div>';
-        echo "<a class='btn_delete' href='delete.php?dl=" . $row['sl'] . "'> delete </a>";
+        echo "<a class='btn_delete' id='btn_delete' href='delete.php?dl=" . $row['sl'] . "'> delete </a>";
         echo '</div>';
     }
     

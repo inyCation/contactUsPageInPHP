@@ -85,6 +85,14 @@ mysqli_close($conn);
             width: 100vw;
             height: 40vh;
             background: var(--clr-pri);
+
+            display: flex;
+            justify-content: end;
+            align-items: center;
+        }
+        .bg_banner > a{
+            color: var(--clr-txt);
+            margin-right: 5rem;
         }
 
         form {
@@ -108,12 +116,16 @@ mysqli_close($conn);
         form button {
             background: none;
             border: none;
+
             letter-spacing: 0.2rem;
             position: absolute;
+
             margin-top: -5rem;
             margin-left: -4.7rem;
+
             width: 10rem;
             height: 2.4rem;
+
             border-top: 2px solid var(--clr-black);
             border-bottom: 2px solid var(--clr-black);
             border-right: 2px solid var(--clr-black);
@@ -137,20 +149,23 @@ mysqli_close($conn);
         .passwd input {
             border-bottom: 2px solid var(--clr-black);
         }
+
     </style>
     <title>Login</title>
 </head>
 
 <body>
-    <div class="bg_banner"></div>
+    <div class="bg_banner">
+        <a href="./register.php">REGISTER HERE</a>
+    </div>
     <form action="" method="post">
         <div class="username">
             <label for="username">USERNAME :</label>
-            <input type="text" name="username" id="username" placeholder="Your Username">
+            <input type="text" name="username" id="username" placeholder="Your Username" autocomplete="off">
         </div>
         <div class="passwd">
             <label for="passwd">PASSWORD :</label>
-            <input type="password" name="passwd" id="passwd" placeholder="Your Password">
+            <input type="password" name="passwd" id="passwd" placeholder="Your Password" autocomplete="off">
         </div>
         <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
         <?php if (isset($error)) echo $error; ?>

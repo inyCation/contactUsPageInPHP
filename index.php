@@ -4,6 +4,8 @@ $blank_found = false;
 $invalid_input = false;
 $name_lt_30 = false;
 
+
+
 if (isset($_POST['name'])) {
 
     $name = htmlspecialchars(trim($_POST['name']), ENT_QUOTES, 'UTF-8');
@@ -27,6 +29,8 @@ if (isset($_POST['name'])) {
 
         $connection = mysqli_connect($server, $username, $password);
 
+
+
         if (!$connection) {
             die("Connection failed Due to " . mysqli_connect_error());
         }
@@ -34,24 +38,21 @@ if (isset($_POST['name'])) {
         if (!$select_db) {
             die("Failed to select the database: " . mysqli_error($connection));
         }
-        $query = "INSERT INTO `contactUs`.`contact` (`name`, `email`, `message`, `dt`) VALUES (?, ?, ?, current_timestamp())";
+
+        $contact_query_id = uniqid();
+        $query = "INSERT INTO `contactUs`.`contact` (`name`, `email`, `message`, `contact_query_no`, `dt`) VALUES (?, ?, ?, ?,current_timestamp())";
         $stmt = mysqli_prepare($connection,$query);
         
-        if ($stmt) {
-            mysqli_stmt_bind_param($stmt, "sss", $name, $email, $message);
+        if($stmt){
+            mysqli_stmt_bind_param($stmt, "ssss", $name, $email, $message, $contact_query_id);
             mysqli_stmt_execute($stmt);
             mysqli_stmt_close($stmt);
             $data_sent = true;
-
-        } else {
+            
+        }else{
             echo "Error in query preparation: " . mysqli_error($con);
         }
-
-        // if ($stmt->execute()) {
-        //     $data_sent = true;
-        // }
-
-        // $stmt->close();
+        
         $connection->close();
     } else {
         echo "Invalid input or blank fields. Data not sent to the database.";
@@ -114,28 +115,39 @@ if (isset($_POST['name'])) {
             </h1>
             <?php
             if ($data_sent != false) {
-                echo "<p class='sent' > MESSAGE SENT </p>";
+                echo "<p class='sent' > MESSAGE SENT QUERY NO(" .$contact_query_id . ") </p>";
             } elseif ($blank_found != false) {
                 echo "<p class='blank' > PLEASE PROVIDE INPUT </p>";
             } elseif ($name_lt_30 != false) {
                 echo "<p class='blank' > PLEASE PUT NAME LESSTHAN 30 CHARs </p>";
             }
             ?>
-            <form action="index.php" method="POST">
+            <form action="" method="POST">
                 <div class="name">
-                    <input type="text" name="name" id="name" placeholder="Your Full Name">
+                    <input type="text" name="name" id="name" placeholder="Your Full Name" autocomplete="off">
                 </div>
                 <div class="email">
-                    <input type="email" name="email" id="email" placeholder="Your Email">
+                    <input type="email" name="email" id="email" placeholder="Your Email" autocomplete="off">
                 </div>
                 <div class="message">
-                    <input type="text" name="message" id="message" placeholder="Your Message">
+                    <input type="text" name="message" id="message" placeholder="Your Message" autocomplete="off">
                 </div>
                 <button type="submit">Submit</button>
-                <a href="./admin/adminLogin.php">ADMIN LOGIN</a>
+                
+                <a class="admin_login" href="./admin/adminLogin.php">ADMIN LOGIN</a>
+                <a class="search_query" href="./searchQuery.php">Search Query</a>
+
             </form>
         </div>
     </div>
+
+
+
+
+
+
+
+
 
 </body>
 

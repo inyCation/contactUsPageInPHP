@@ -48,6 +48,11 @@ $_SESSION['lastActivity'] = time();
                 <p>
                     CURRENT PORJECT : WORKING ON AZURE AS (DBA)
                 </p>
+                <p>
+                    <?php
+                        echo "<a>LOG OUT</a>";
+                    ?>
+                </p>
             </div>
         </div>
         <div class="contact_body">

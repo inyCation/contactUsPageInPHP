@@ -1,5 +1,8 @@
 <?php
 
+session_start();
+
+if (isset($_SESSION['username'])) {
     include("_con.php");
 
     if (!$conn) {
@@ -22,6 +25,13 @@
     
     mysqli_free_result($result);
     mysqli_close($conn);
+}
+else{
+    header("Location: adminLogin.php");
+    exit;
+}
+
+    
     
 
 ?>

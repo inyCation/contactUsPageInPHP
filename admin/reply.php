@@ -2,39 +2,46 @@
 
 $reply_sent = false;
 
-include("_con.php");
-if (!$conn) {
-    die('Could not connect to MySQL: ' . mysqli_connect_error());
-}
+session_start();
 
-$sl = (int)$_GET['reply'];
-
-$query = "SELECT message FROM `contact` WHERE sl=?";
-$stmt = mysqli_prepare($conn, $query);
-mysqli_stmt_bind_param($stmt, "i", $sl);
-mysqli_stmt_execute($stmt);
-$result = mysqli_stmt_get_result($stmt);
-
-$message = null;
-if ($row = mysqli_fetch_assoc($result)) {
-    $message = $row['message'];
-}
-mysqli_stmt_close($stmt);
-
-
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $reply = htmlspecialchars(trim($_POST['reply']), ENT_QUOTES, 'UTF-8');
-
-    $reply_query = "UPDATE `contact` SET `status` = ? WHERE `contact`.`sl` = ?";
-
-    $reply_stmt = mysqli_prepare($conn, $reply_query);
-    if ($reply_query) {
-        mysqli_stmt_bind_param($reply_stmt, "ss", $reply, $sl);
-        mysqli_stmt_execute($reply_stmt);
-        $reply_sent = true;
+if (isset($_SESSION['username'])) {
+    include("_con.php");
+    if (!$conn) {
+        die('Could not connect to MySQL: ' . mysqli_connect_error());
     }
-    mysqli_stmt_close($reply_stmt);
+
+    $sl = (int)$_GET['reply'];
+
+    $query = "SELECT message FROM `contact` WHERE sl=?";
+    $stmt = mysqli_prepare($conn, $query);
+    mysqli_stmt_bind_param($stmt, "i", $sl);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+
+    $message = null;
+
+    if ($row = mysqli_fetch_assoc($result)) {
+        $message = $row['message'];
+    }
+    mysqli_stmt_close($stmt);
+
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $reply = htmlspecialchars(trim($_POST['reply']), ENT_QUOTES, 'UTF-8');
+
+        $reply_query = "UPDATE `contact` SET `status` = ? WHERE `contact`.`sl` = ?";
+
+        $reply_stmt = mysqli_prepare($conn, $reply_query);
+        if ($reply_query) {
+            mysqli_stmt_bind_param($reply_stmt, "ss", $reply, $sl);
+            mysqli_stmt_execute($reply_stmt);
+            $reply_sent = true;
+        }
+        mysqli_stmt_close($reply_stmt);
+    }
+} else {
+    header('Location: adminLogin.php');
+    exit;
 }
 
 
@@ -49,19 +56,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        
         @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
-        :root{
+
+        :root {
             --clr-pri: rgba(141, 67, 216, 0.336);
             --clr-txt: rgb(245, 245, 244);
             --clr-black: rgb(10, 10, 10);
         }
-        *{
+
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        body{
+
+        body {
             background: url(../assets/bgImg.jpg);
             background-position: center;
             background-repeat: no-repeat;
@@ -71,20 +80,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
         }
-        .banner{
+
+        .banner {
             position: absolute;
             top: 30vh;
-            
+
             height: 40vh;
             width: 100vw;
             background: var(--clr-pri);
 
         }
-        .card{
+
+        .card {
             position: absolute;
             top: 25vh;
             left: 34vw;
-            
+
             background: var(--clr-txt);
             width: 30vw;
             height: 50vh;
@@ -97,14 +108,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             align-items: center;
             flex-direction: column;
         }
-        .card form{
+
+        .card form {
             display: flex;
             justify-content: space-around;
             align-items: center;
-            flex-direction: column;  
+            flex-direction: column;
             height: 7rem;
         }
-        .card form input{
+
+        .card form input {
             width: 19rem;
 
             outline: none;
@@ -115,7 +128,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             font-size: 1.1rem;
 
         }
-        .card form button{
+
+        .card form button {
             outline: none;
             border: none;
             background: none;
@@ -127,16 +141,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             letter-spacing: 0.2rem;
             font-size: 1.1rem;
-            
+
             width: 6rem;
             height: 2.4rem;
         }
-        .card form button:hover{
+
+        .card form button:hover {
             background-color: var(--clr-black);
             color: var(--clr-txt);
         }
-
-
     </style>
 
 </head>

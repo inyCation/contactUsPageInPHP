@@ -2,19 +2,37 @@
 
 session_start();
 
-$sessionExpiration = 130; 
+$sessionExpiration = 130;
+if (isset($_SESSION['username'])) {
+    if (isset($_SESSION['lastActivity']) && time() - $_SESSION['lastActivity'] > $sessionExpiration) {
+        $_SESSION = array();
+
+        if (ini_get("session.use_cookies")) {
+            $params = session_get_cookie_params();
+            setcookie(
+                session_name(),
+                '',
+                time() - 42000,
+                $params["path"],
+                $params["domain"],
+                $params["secure"],
+                $params["httponly"]
+            );
+        }
+
+        session_unset();
+        session_destroy();
+        header('Location: adminLogin.php');
+        exit;
+    }
 
 
-if (isset($_SESSION['lastActivity']) && time() - $_SESSION['lastActivity'] > $sessionExpiration) {
-    
-    session_unset();
-    session_destroy();
+    $_SESSION['lastActivity'] = time();
+} else {
     header('Location: adminLogin.php');
     exit;
 }
 
-
-$_SESSION['lastActivity'] = time();
 
 
 ?>
@@ -43,14 +61,14 @@ $_SESSION['lastActivity'] = time();
                     POSITION : DATABASE ANALYST
                 </p>
                 <p>
-                    ACCESS LEVEL : 1St 
+                    ACCESS LEVEL : 1St
                 </p>
                 <p>
                     CURRENT PORJECT : WORKING ON AZURE AS (DBA)
                 </p>
                 <p>
                     <?php
-                        echo "<a>LOG OUT</a>";
+                    echo "<a href='logout.php'>LOG OUT</a>";
                     ?>
                 </p>
             </div>
@@ -60,22 +78,21 @@ $_SESSION['lastActivity'] = time();
                 Contact Fetched INFO
             </h1>
             <div class="db_cards" id="db-cards">
-                
+
             </div>
         </div>
     </div>
 </body>
 <script>
-        function fetchAndRefreshData(){
-            fetch('fetch_data.php')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('db-cards').innerHTML = data;
-                });
-        }
-        fetchAndRefreshData();
-        setInterval(fetchAndRefreshData, 1000);
+    function fetchAndRefreshData() {
+        fetch('fetch_data.php')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('db-cards').innerHTML = data;
+            });
+    }
+    fetchAndRefreshData();
+    setInterval(fetchAndRefreshData, 1000);
 </script>
+
 </html>
-
-

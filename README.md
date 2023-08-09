@@ -1,13 +1,18 @@
 # contactUsPageInPHP
 
-# Web Page with PHP and MySQL
+# Contact Us Page in PHP with Admin Panel
 
-This repository contains the code for a dynamic and interactive Contact Page with an Admin Panel, created using PHP and MySQL DB. The project aims to demonstrate the seamless integration of PHP scripting language with the powerful relational database management system, MySQL, to build a robust web application.
-## Usage
+Welcome to the **Contact Us Page with Admin Panel** repository! This project demonstrates the seamless integration of PHP scripting language with the powerful relational database management system, MySQL, to build a dynamic web application for user communication and inquiry management.
 
-The web page enables users to communicate with you through a contact form, capturing their details for further engagement. The data submitted through the contact form is seamlessly stored in the MySQL database, ensuring efficient data management and retrieval.
+## Features
 
-The Admin Panel provides exclusive access to view all the contact form submissions, empowering you to monitor user inquiries and streamline communication.
+- **Contact Form:** Users can communicate with you through a user-friendly contact form, and their details are securely stored in a MySQL database.
+- **Query ID Generation:** Each user inquiry receives a unique query ID, enabling efficient tracking and organization.
+- **Admin Panel:** An admin panel grants access to view, manage, and respond to user inquiries, streamlining communication.
+- **Response Page:** Users can search for their inquiry using the assigned query ID to check for admin responses.
+- **CSRF Protection:** The admin login is fortified with CSRF protection to prevent unauthorized access.
+- **Session-Based Authentication:** All admin pages are authenticated using secure session management.
+
 
 ## Requirements
 
@@ -31,13 +36,13 @@ To configure the web page using XAMPP on your local machine, meticulously follow
    git clone https://github.com/inyCation/contactUsPageInPHP C:/xampp/htdocs/contactUsPageInPHP
    ```
 
-5. Create a novel MySQL database and seamlessly import the provided SQL file:
+5. Database Setup:
 
-   - Open your preferred web browser and navigate to `http://localhost/phpmyadmin`.
-   - Opt for "New" to engender a fresh database, denoted as "contactUs," and subsequently press "Create."
+    Open http://localhost/phpmyadmin in your web browser.
 
-   - After successfully creating the database, navigate to it in the left sidebar and proceed to the "Import" tab, prominently situated at the top.
-   - Choose the "contactUs.sql" file from your cloned repository by pressing "Choose File." Thereafter, preserve the remaining configurations as default and execute the "Go" command to seamlessly import the SQL file into the database.
+    Create a database named "contactUs."
+
+    Navigate to the "Import" tab, choose the "contactUs.sql" file from the cloned repository, and execute the import.
 
 6. Access the web page via your web browser by inputting the subsequent URL:
 
@@ -54,7 +59,8 @@ To access the Admin Panel and its privileged functionalities, employ the followi
 - Username: admin
 - Password: Admin@123
 
-Kindly acknowledge that due to the rapid development of this project, the Admin Panel's functionalities may not be fully functional or may exhibit incompleteness. Specifically, certain features such as deleting contact form submissions may not be entirely implemented at this stage. This project serves as a rudimentary demonstration of PHP and MySQL integration, intended primarily for learning purposes.
+Please note that while the Admin Panel's functionality is intended for learning purposes, it includes features such as logout, replying to specific queries, deleting queries, and viewing all queries at once.
+
 
 ## Contribution
 

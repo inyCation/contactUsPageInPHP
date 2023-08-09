@@ -97,7 +97,7 @@ if (isset($_SESSION['username'])) {
             left: 34vw;
 
             background: var(--clr-txt);
-            width: 30vw;
+            width: 35vw;
             height: 50vh;
 
             border-radius: 0.4rem;

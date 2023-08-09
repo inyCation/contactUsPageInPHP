@@ -50,7 +50,7 @@ if (isset($_POST['name'])) {
             $data_sent = true;
             
         }else{
-            echo "Error in query preparation: " . mysqli_error($con);
+            echo "Error in query preparation: " . mysqli_error($connection);
         }
         
         $connection->close();

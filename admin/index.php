@@ -47,6 +47,61 @@ if (isset($_SESSION['username'])) {
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link rel="stylesheet" href="./style.css">
     <title>Admin</title>
+    <style>
+        .logout_btn {
+            position: absolute;
+            top: 110%;
+            right: 0;
+            background: #fff;
+            padding: 0.5rem;
+
+            text-decoration: none;
+            font-size: 1.4rem;
+            border-radius: 0.5rem;
+
+            transition: 0.1s ease-in-out;
+
+        }
+
+        .logout_btn:hover {
+            color: #000;
+            transform: scale(1.1);
+        }
+
+        .btn_delete,
+        .btn_reply {
+            display: block;
+            text-transform: capitalize;
+
+            padding: 0.2rem;
+            border-radius: 0.6rem;
+
+            width: 5rem;
+            margin: 1rem;
+            text-align: center;
+            color: var(--clr-txt);
+            transition: 0.1s ease-in-out;
+
+        }
+        .btn_delete:hover,
+        .btn_reply:hover {
+            color: #000;
+            transform: scale(1.1);
+        }
+
+        .btn_delete {
+            background: red;
+            color: var(--clr-txt);          
+
+            float: right;
+            text-decoration: none;
+        }
+
+        .btn_reply {
+            text-decoration: none;
+            background: green;
+        }
+    </style>
 </head>
 
 <body>
@@ -55,7 +110,7 @@ if (isset($_SESSION['username'])) {
             <div class="title">
                 ADMINISTRATOR Info
                 <p>
-                    NAME : ASHUTOSH KUMAR
+                    NAME : <?php echo ucfirst($_SESSION['adminName']) ?>
                 </p>
                 <p>
                     POSITION : DATABASE ANALYST
@@ -68,7 +123,7 @@ if (isset($_SESSION['username'])) {
                 </p>
                 <p>
                     <?php
-                    echo "<a href='logout.php'>LOG OUT</a>";
+                    echo "<a class='logout_btn' href='logout.php'>LOG OUT</a>";
                     ?>
                 </p>
             </div>

@@ -25,19 +25,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
     $password = $_POST['passwd'];
 
-    $query = "SELECT * FROM admin WHERE name = ? AND passwd = ?";
+    $query = "SELECT * FROM admin WHERE name = ?";
     $stmt = mysqli_prepare($conn, $query);
-    mysqli_stmt_bind_param($stmt, 'ss', $username, $password);
+    mysqli_stmt_bind_param($stmt, 's', $username);
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
 
     if (mysqli_num_rows($result) === 1) {
-        $_SESSION['username'] = $username;
+        $userRow = mysqli_fetch_assoc($result);
+        $hashedPasswordFromDB = $userRow['passwd'];
+        $salt = $userRow['salt'];
 
-        session_regenerate_id(true);
 
-        header('Location: index.php');
-        exit;
+        if (password_verify($password . $salt, $hashedPasswordFromDB)) {
+            $_SESSION['username'] = $username;
+            $_SESSION['adminName'] = $username;
+
+            session_regenerate_id(true);
+
+            header('Location: index.php');
+            exit;
+        } else {
+            $error = "Invalid username or password.";
+        }
     } else {
         $error = "Invalid username or password.";
     }
@@ -45,6 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 mysqli_close($conn);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

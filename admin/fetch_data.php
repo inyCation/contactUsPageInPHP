@@ -19,7 +19,7 @@ if (isset($_SESSION['username'])) {
         echo '<div class="message"> Message : ' . $row['message'] . '</div>';
         echo '<div class="dt"> Time : ' . $row['dt'] . '</div>';
         echo "<a class='btn_delete' id='btn_delete' href='delete.php?dl=" . $row['sl'] . "'> delete </a>";
-        echo "<a class='btn_delete' id='btn_delete' href='reply.php?reply=" . $row['sl'] . "'> reply </a>";
+        echo "<a class='btn_reply' id='btn_reply' href='reply.php?reply=" . $row['sl'] . "'> reply </a>";
         echo '</div>';
     }
     

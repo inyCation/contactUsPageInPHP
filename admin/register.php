@@ -1,11 +1,11 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 $data_sent = false;
 $blank_found = false;
 $invalid_input = false;
 $name_lt_30 = false;
-
-
-
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 
@@ -39,24 +39,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
             exit;
         }
     
-        $query = "INSERT INTO `admin` (`name`, `email`, `passwd`) VALUES ( ?, ? , ?)";
+        $salt = bin2hex(random_bytes(16));
+        
+        $hashedPassword = password_hash($password . $salt, PASSWORD_BCRYPT);
     
-        $stmt = mysqli_prepare($conn,$query);
-        if($stmt){
-            mysqli_stmt_bind_param($stmt, "sss", $username, $email, $password);
+
+        $query = "INSERT INTO `admin` (`name`, `email`, `salt`,`passwd` ) VALUES (?, ?, ?, ?)";
+    
+        $stmt = mysqli_prepare($conn, $query);
+        if ($stmt) {
+            mysqli_stmt_bind_param($stmt, "ssss", $username, $email, $salt, $hashedPassword);
             mysqli_stmt_execute($stmt);
             mysqli_stmt_close($stmt);
             $data_sent = true;
-        }
-        else{
+        } else {
             echo "Error in query preparation: " . mysqli_error($conn);
         }
     
         $conn->close();
     }
 }
-
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

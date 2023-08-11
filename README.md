@@ -12,6 +12,7 @@ Welcome to the **Contact Us Page with Admin Panel** repository! This project dem
 - **Response Page:** Users can search for their inquiry using the assigned query ID to check for admin responses.
 - **CSRF Protection:** The admin login is fortified with CSRF protection to prevent unauthorized access.
 - **Session-Based Authentication:** All admin pages are authenticated using secure session management.
+- **Hashing+Salting Registration with Auth:** Registeration and admin login is integrated with hashing and salting security.
 
 
 ## Requirements

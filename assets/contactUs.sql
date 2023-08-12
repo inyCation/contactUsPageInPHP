@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 09, 2023 at 06:16 AM
+-- Generation Time: Aug 12, 2023 at 08:30 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -31,6 +31,7 @@ CREATE TABLE `admin` (
   `sl` int(11) NOT NULL,
   `name` text NOT NULL,
   `email` text NOT NULL,
+  `salt` varchar(400) NOT NULL,
   `passwd` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -38,8 +39,8 @@ CREATE TABLE `admin` (
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`sl`, `name`, `email`, `passwd`) VALUES
-(1, 'admin', 'admin@admin.com', 'Admin@123');
+INSERT INTO `admin` (`sl`, `name`, `email`, `salt`, `passwd`) VALUES
+(1, 'admin', 'admin@gmail.com', '56e0d07b2f24a2270dc8517f03eff6c0', '$2y$10$H8.t288/D7gbDOsbjveCYOJK7oHF1Ap6BCSngPtDwdmbxwoe4RJ0i');
 
 -- --------------------------------------------------------
 
@@ -62,16 +63,14 @@ CREATE TABLE `contact` (
 --
 
 INSERT INTO `contact` (`sl`, `name`, `email`, `message`, `contact_query_no`, `status`, `dt`) VALUES
-(1, 'Amit Kumar', 'amit@example.com', 'Hi there! I\'m curious about your products and services. Can you provide me with some information?', '2F0E9D4C8B', 'Sure thing!', '2023-08-09 10:00:00'),
-(2, 'Priya Sharma', 'priya@example.com', 'Hello! I\'m reaching out because I need assistance with a certain matter. Can you guide me through the process?', '7A5B3C1D9E', '', '2023-08-09 12:30:00'),
-(3, 'Rahul Verma', 'rahul@example.com', 'Hey! I\'m facing an issue and I believe you can help. Could you lend a hand with troubleshooting this problem?', 'F8E6D4C2B0', 'Of course!', '2023-08-09 14:15:00'),
+(2, 'Priya Sharma', 'priya@example.com', 'Hello! I\'m reaching out because I need assistance with a certain matter. Can you guide me through the process?', '7A5B3C1D9E', 'oh kt', '2023-08-09 12:30:00'),
 (4, 'Sneha Gupta', 'sneha@example.com', 'Hey there! I seem to have encountered a roadblock while trying to access my account. Could you assist me in resolving this?', '9A7B5C3D1E', 'Absolutely!', '2023-08-09 16:45:00'),
 (5, 'Neha Patel', 'neha@example.com', 'Greetings! I\'m interested in your services and would like to learn more. Can you share some insights about what you offer?', '0F1E2D3C4B', '', '2023-08-09 18:20:00'),
 (6, 'Rajesh Singh', 'rajesh@example.com', 'Hello! I\'m intrigued by your products and have a specific question. Could you provide some clarity on this matter?', '5A4B3C2D1E', 'Certainly!', '2023-08-09 20:30:00'),
 (7, 'Kavita Reddy', 'kavita@example.com', 'Hi! I\'m considering your services and would appreciate some additional details. Can you shed light on the unique benefits you provide?', '9F8E7D6C5B', '', '2023-08-09 22:15:00'),
 (8, 'Aarav Deshmukh', 'aarav@example.com', 'Greetings! I\'ve encountered some confusion while managing my account settings. Could you assist me in navigating through this?', '1A2B3C4D5E', 'Sure thing!', '2023-08-09 23:45:00'),
 (9, 'Tanvi Chauhan', 'tanvi@example.com', 'Hello! I\'m interested in your services and would like to know if there\'s a customer support number I can reach out to for queries.', '6F7E8D9C0B', '', '2023-08-10 09:30:00'),
-(10, 'Ishaan Joshi', 'ishaan@example.com', 'Hey there! I\'m facing issues while trying to log into my account. Could you help me troubleshoot this issue?', '2A3B4C5D6E', 'Absolutely!', '2023-08-10 11:00:00');
+(10, 'Ishaan Joshi', 'ishaan@example.com', 'Hey there! I\'m facing issues while trying to log into my account. Could you help me troubleshoot this issue?', '2A3B4C5D6E', 'hello , ill solve you query', '2023-08-10 11:00:00');
 
 --
 -- Indexes for dumped tables
@@ -97,13 +96,13 @@ ALTER TABLE `contact`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `sl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `sl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `contact`
 --
 ALTER TABLE `contact`
-  MODIFY `sl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `sl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
